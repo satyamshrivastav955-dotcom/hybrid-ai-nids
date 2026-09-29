@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+# Artifacts (versioned externally, never committed)
+models/*.joblib
+models/*.pth
+models/*.json
+models_seed43/
+!models/.gitkeep
+data/raw/*
+data/interim/*
+data/processed/*
+data/splits/*
+data/metadata/*.json
+!data/**/.gitkeep
+experiments/results/*.json
+experiments/results_seed43/
+!experiments/results/.gitkeep
+experiments/figures/*.png
+experiments/figures_seed43/
+!experiments/figures/.gitkeep
+# Secrets
+.env
+*.pem
+*.key
+# Run logs
+*.log
+# Node
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+# DB
+*.db
+*.sqlite
+# OS
+.DS_Store
+Thumbs.db
+# Test
+.coverage
+.pytest_cache/
+htmlcov/

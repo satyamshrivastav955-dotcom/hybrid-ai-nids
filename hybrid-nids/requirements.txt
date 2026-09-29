@@ -1,0 +1,16 @@
+fastapi==0.141.*
+uvicorn[standard]==0.52.*
+pydantic==2.13.*
+pydantic-settings==2.14.*
+SQLAlchemy==2.0.*
+psycopg[binary]==3.2.*
+pandas==3.0.*
+numpy==2.2.*
+scikit-learn==1.9.*
+scipy==1.18.*
+joblib==1.5.*
+torch==2.12.*
+PyYAML==6.0.*
+python-multipart==0.0.*
+httpx==0.28.*
+websockets==15.*

@@ -1,0 +1,10 @@
+# Feature-engineering configuration. All fitting happens on TRAIN ONLY.
+features:
+  top_k: 30
+  variance_threshold: 0.0        # drop constant features (variance <= threshold)
+  correlation_threshold: 0.98    # drop one of any pair with |corr| above this (train-only)
+  missing_threshold: 0.5         # drop columns with more missing than this fraction
+  scaler: "robust"               # robust | standard
+  ranking: "mutual_info"         # mutual_info | f_test | variance
+  label_column: "Label"
+  benign_label: "BENIGN"

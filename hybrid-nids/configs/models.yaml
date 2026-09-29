@@ -1,0 +1,44 @@
+# Model training configuration.
+seed: 42
+random_forest:
+  n_estimators: 200
+  max_depth: null
+  min_samples_split: 2
+  min_samples_leaf: 1
+  class_weight: "balanced_subsample"
+  n_jobs: -1
+  random_state: 42
+autoencoder:
+  hidden_dims: [64, 32, 16]
+  activation: "relu"
+  dropout: 0.0
+  learning_rate: 0.001
+  batch_size: 256
+  epochs: 50
+  patience: 8
+  max_train_rows: 200000  # deterministic stride cap; 1.5M benign rows infeasible per-epoch on laptop GPU
+  train_on: "benign_only"
+  threshold_strategy: "percentile"   # percentile | fpr_target
+  threshold_percentile: 95.0
+  fpr_target: 0.05
+  seed: 42
+isolation_forest:
+  n_estimators: 200
+  max_samples: "auto"
+  contamination: "auto"   # threshold itself is set on benign validation; this is only the estimator prior
+  train_on: "benign_only"
+  random_state: 42
+lstm:
+  seq_len: 10
+  hidden_size: 64
+  num_layers: 1
+  dropout: 0.2
+  learning_rate: 0.001
+  batch_size: 256
+  epochs: 30
+  patience: 6
+  max_train_sequences: 300000  # deterministic stride cap; full windows exceed RAM at CICIDS2017 scale
+  max_val_sequences: 60000
+  sequence_keys: ["Source IP", "Destination IP"]  # optional flow-context grouping; falls back to global time order
+  timestamp_column: "Timestamp"
+  seed: 42

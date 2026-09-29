@@ -1,0 +1,15 @@
+# Decision-level ensemble configuration.
+ensemble:
+  mode: "validation_optimized"   # manual | validation_optimized
+  manual_weights:                # used when mode == manual
+    random_forest: 0.4
+    autoencoder: 0.2
+    isolation_forest: 0.15
+    lstm: 0.25
+  metric: "f1"                   # validation metric used for weight search
+  decision_threshold: 0.5        # final_risk_score >= threshold => attack
+  risk_bands:
+    low: 0.25
+    medium: 0.5
+    high: 0.75
+    # >= high => CRITICAL; [medium, high) => HIGH; [low, medium) => MEDIUM; else LOW

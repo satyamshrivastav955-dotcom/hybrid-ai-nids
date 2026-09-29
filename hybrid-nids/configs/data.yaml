@@ -1,0 +1,29 @@
+# Dataset pipeline configuration.
+dataset:
+  name: "CICIDS2017"
+  version: "v1"
+  raw_dir: "data/raw"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  splits_dir: "data/splits"
+  metadata_dir: "data/metadata"
+  label_column: "Label"
+  benign_label: "BENIGN"
+  # Columns that are identifiers, not model features.
+  drop_columns:
+    - "Flow ID"
+    - "Source IP"
+    - "Destination IP"
+    - "Timestamp"
+  seed: 42
+  test_size: 0.2
+  val_size: 0.15   # fraction of train split reserved for validation
+  temporal:
+    test_days: 1   # day-aware temporal test = last N calendar days (Friday = DDoS/PortScan)
+  protocols:
+    - standard_stratified
+    - temporal
+    - unseen_attack
+  unseen_attack:
+    holdout_families: ["Infiltration"]  # configurable attack families held out of training
+    timestamp_column: "Timestamp"

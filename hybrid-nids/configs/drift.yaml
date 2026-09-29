@@ -1,0 +1,9 @@
+# PSI concept-drift configuration.
+drift:
+  n_bins: 10
+  epsilon: 1.0e-4          # stability constant for zero bins
+  moderate_threshold: 0.1  # PSI >= moderate => MODERATE
+  severe_threshold: 0.25   # PSI >= severe => SEVERE
+  aggregate: "mean"        # mean | max across features
+  reference_version: "baseline-v1"
+  min_current_rows: 100
