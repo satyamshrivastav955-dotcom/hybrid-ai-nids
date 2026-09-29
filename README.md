@@ -38,7 +38,6 @@ Python 3.10+, Node 18+, 8GB RAM. Docker optional (no Docker daemon required for 
 ## Installation
 
 ```bash
-cd hybrid-nids
 pip install -r requirements.txt
 cd frontend && npm install && cd ..
 cp .env.example .env
@@ -84,7 +83,7 @@ Results: `experiments/results/*.json`, figures: `experiments/figures/`.
 Standard test (n=566k): RF F1 **0.9984**, ensemble F1 **0.9988** at FPR **0.0001**.
 Unseen Infiltration holdout: recall **0.64** at FPR 0.0001 (anomaly-grade, honestly reported).
 Temporal Fri test (703k rows, 41% attacks): ensemble F1 **0.9998**, LSTM F1 **0.9973**.
-Drift Thu→Fri: PSI **0.21 MODERATE**, no performance collapse.
+Drift ThuΓåÆFri: PSI **0.21 MODERATE**, no performance collapse.
 Latency: **~0.23ms/flow (~4,300 flows/s)** measured. Full tables: `docs/results.md`.
 
 ## Running the API / frontend
@@ -107,7 +106,7 @@ docker compose -f docker/docker-compose.yml up --build
 ## Testing
 
 ```bash
-python -m pytest tests/ -q   # 17 tests: preprocessing, models, ensemble, PSI, API e2e, WS
+python -m pytest tests/ -q   # 22 tests: preprocessing, models, ensemble, PSI, API e2e, WS
 ```
 
 ## Configuration
@@ -132,5 +131,5 @@ for alert transitions, no secrets committed.
 ## Reproducibility
 
 Seeds, config fingerprints, dataset manifest (sha256), feature schema, model
-registry, per-protocol metrics — see `docs/reproducibility.md` and
+registry, per-protocol metrics ΓÇö see `docs/reproducibility.md` and
 `docs/evaluation.md`.
