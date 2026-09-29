@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: nids
+      POSTGRES_PASSWORD: nids
+      POSTGRES_DB: nids
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://nids:nids@postgres:5432/nids
+      CORS_ORIGINS: http://localhost:8080
+      THREAT_INTEL_PROVIDER: mock
+    volumes:
+      - ../models:/app/models:ro
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
